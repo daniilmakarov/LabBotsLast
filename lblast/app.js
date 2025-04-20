@@ -12,9 +12,10 @@ const forecasts = {
     '2': 'Время для принятия важных решений. Не бойтесь проявить инициативу и следовать своим целям.',  
 };  
 
-// Находим кнопки  
+// Находим кнопки и элемент для вывода прогноза  
 let btn1 = document.getElementById("btn1");  
 let btn2 = document.getElementById("btn2");  
+let usercard = document.getElementById('usercard'); // Элемент для отображения прогноза  
 
 // Добавляем обработчики событий для кнопок  
 btn1.addEventListener("click", function () {  
@@ -25,6 +26,7 @@ btn1.addEventListener("click", function () {
         item = "1"; // Устанавливаем код для Овна  
         tg.MainButton.show();  
         currentForecast = forecasts[item]; // Сохраняем прогноз  
+        usercard.textContent = currentForecast; // Выводим прогноз в div  
     }  
 });  
 
@@ -36,11 +38,11 @@ btn2.addEventListener("click", function () {
         item = "2"; // Устанавливаем код для Тельца  
         tg.MainButton.show();  
         currentForecast = forecasts[item]; // Сохраняем прогноз  
+        usercard.textContent = currentForecast; // Выводим прогноз в div  
     }  
 });  
 
 // Обработчик клика на основной кнопке  
 Telegram.WebApp.onEvent("mainButtonClicked", function () {  
     tg.sendData(item); // Отправляем код знака зодиака  
-    alert(currentForecast); // Выводим краткий прогноз в алерте  
 });  
